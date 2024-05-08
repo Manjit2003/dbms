@@ -1,0 +1,25 @@
+create database Bank_management;
+use Bank_management;
+create table customer(CustomerId int(3) primary key, Customer_Name varchar(20), Acc_no int(15), Balance DECIMAL(10, 2) CHECK (Balance >= 0));
+ insert into customer values(1,"Mayank",001,700);
+ insert into customer values(2,"Ram",002,20000);
+ insert into customer values(3,"Sahil",003,0);
+  select * from customer;
+create table trasaction (TransacId int(3) primary key, CustomerId int references customer(CustomerId), Amount DECIMAL(10, 2),TransactionDate DATE);
+ insert into trasaction values(1001,1,200,"2002-01-12");
+select * from trasaction;
+ insert into trasaction values(1002,2,50,"2002-01-1");
+insert into trasaction values(1003,3,50,"2002-01-1");
+ select * from trasaction;
+ CREATE VIEW HighBalanceCustomers AS SELECT * FROM Customer WHERE Balance > 10000;
+select * from HighBalanceCustomers;
+ drop view  HighBalanceCustomers;
+create table Personal_details as select CustomerId, Acc_no, Balance from Customer;
+select * from Personal_details;
+truncate table Personal_details;
+ select * from Personal_details;
+Drop table Personal_details;
+ create index cust_ind on Customer(CustomerId,Customer_Name);
+show index from Customer;
+
+
